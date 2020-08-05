@@ -11,4 +11,24 @@
 #  updated_at :datetime         not null
 #
 class Actor < ApplicationRecord
+
+  def characters
+
+      characters = Character.where({ :actor_id => self.id })
+      return characters
+
+  end
+
+  def filmography
+
+    films = []
+    
+    self.characters.each do |char|
+      films.push(char.movie)
+    end
+
+    return films
+
+  end
+
 end
